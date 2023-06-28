@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "412991946141",
+    "project_id": "taste-explorer",
+    "storage_bucket": "taste-explorer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412991946141:android:ecce89cfc2027d37ef8374",
+        "android_client_info": {
+          "package_name": "com.omrimega.tasteexplorer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "412991946141-s636pon26s41a45komcqqj4u9ur9sbmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAabG23HGBeCxsXjnA3s_ItLuoBOu4u9bI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "412991946141-69oc1jq5bcnvmp5o60e32ib1irtng08o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

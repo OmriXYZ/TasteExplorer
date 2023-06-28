@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TasteExplorer" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+<!--         <item name="colorPrimary">@color/transparent</item>-->
+    </style>
+
+    <style name="Theme.TasteExplorer" parent="Base.Theme.TasteExplorer" />
+
+    <style name="Theme.TasteExplorer.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Widget.Custom.NavigationView" parent="Widget.Design.NavigationView">
+        <item name="itemIconTint">@color/black</item>
+        <item name="itemTextColor">@color/black</item>
+        <item name="itemBackground">@drawable/drawer_item_color</item>
+
+    </style>
+
+<!--    <style name="ThemeOverlay.AppCompat.navTheme">-->
+
+<!--        &lt;!&ndash; Color of text and icon when SELECTED &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/selected_item</item>-->
+
+<!--        &lt;!&ndash; Background color when SELECTED &ndash;&gt;-->
+<!--        <item name="colorControlHighlight">@color/selected_item</item>-->
+
+<!--    </style>-->
+
+    <style name="Theme.TasteExplorer.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.TasteExplorer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

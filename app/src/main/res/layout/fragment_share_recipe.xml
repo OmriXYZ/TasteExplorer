@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.sharerecipe.ShareRecipeFragment"
+    android:background="@drawable/foodbg2"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Share a recipe"
+            android:textColor="#F52323"
+            android:textSize="36sp"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="24dp"
+            >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/share_recipe_EDIT_name"
+                android:layout_marginTop="40dp"
+                android:padding="8dp"
+                android:hint="Name of recipe"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:drawablePadding="8dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:id="@+id/share_recipe_EDIT_instructions"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:textSize="20sp"
+                android:hint="Instructions"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:drawablePadding="8dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:id="@+id/share_recipe_EDIT_tags"
+                android:layout_marginTop="15dp"
+                android:padding="6dp"
+                android:gravity="start"
+                android:textSize="15sp"
+                android:hint="Tags"
+                android:textColor="@color/black"
+                android:background="@color/white" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="75dp">
+
+                <com.google.android.material.circularreveal.CircularRevealGridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:columnCount="4"
+                    android:id="@+id/share_recipe_GRIDBTN_tags_buttons"
+                    >
+
+
+
+
+                </com.google.android.material.circularreveal.CircularRevealGridLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+            <NumberPicker
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Upload photos"
+                android:id="@+id/share_recipe_BTN_upload"
+                android:textSize="18sp"
+                android:layout_marginTop="15dp"
+                app:cornerRadius = "20dp"
+                android:backgroundTint="@color/basic_color"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Share!"
+                android:id="@+id/share_recipe_BTN_share"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                app:cornerRadius = "20dp"
+                android:backgroundTint="@color/basic_color"
+                />
+
+
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

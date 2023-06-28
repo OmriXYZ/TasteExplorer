@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/et_recipe_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Recipe Name" />
+
+    <EditText
+        android:id="@+id/et_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Instructions/Description"
+        android:inputType="textMultiLine"
+        android:minLines="3" />
+
+    <EditText
+        android:id="@+id/et_tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tags" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_breakfast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Breakfast" />
+
+        <Button
+            android:id="@+id/btn_brunch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Brunch" />
+
+        <Button
+            android:id="@+id/btn_lunch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lunch" />
+
+        <Button
+            android:id="@+id/btn_dinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dinner" />
+
+    </LinearLayout>
+
+    <!-- Time Picker -->
+    <Button
+        android:id="@+id/btn_pick_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick Time" />
+
+    <!-- Persons Picker -->
+    <EditText
+        android:id="@+id/et_num_of_persons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Number of Persons" />
+
+    <!-- Difficulty Picker -->
+    <Spinner
+        android:id="@+id/spinner_difficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Upload Photos Button -->
+    <Button
+        android:id="@+id/btn_upload_photos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload Photos" />
+
+    <Button
+        android:id="@+id/btn_share_recipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share Recipe" />
+
+</LinearLayout>
+
