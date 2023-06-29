@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -24,9 +25,10 @@ import java.util.List;
 
 public class ShareRecipeFragment extends Fragment implements View.OnClickListener {
 
-    private EditText share_recipe_EDIT_name, share_recipe_EDIT_instructions, share_recipe_EDIT_tags, etNumOfPersons;
-    CircularRevealGridLayout share_recipe_GRIDBTN_tags_buttons;
-
+    private EditText share_recipe_EDIT_name, share_recipe_EDIT_instructions, share_recipe_EDIT_tags;
+    private NumberPicker share_recipe_PICK_time, share_recipe_PICK_persons;
+    private Button share_recipe_BTN_uploadphotos, share_recipe_BTN_share;
+//    CircularRevealGridLayout share_recipe_GRIDBTN_tags_buttons;
 //    private Button btnBreakfast, btnBrunch, btnLunch, btnDinner;
 //    private Button btnPickTime, btnUploadPhotos, btnShareRecipe;
 //    private Spinner spinnerDifficulty;
@@ -40,18 +42,25 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
         share_recipe_EDIT_instructions = rootView.findViewById(R.id.share_recipe_EDIT_instructions);
         share_recipe_EDIT_tags = rootView.findViewById(R.id.share_recipe_EDIT_tags);
 
-        share_recipe_GRIDBTN_tags_buttons = rootView.findViewById(R.id.share_recipe_GRIDBTN_tags_buttons);
-        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "Breakfast"));
-        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "Brunch"));
-        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "Lunch"));
-        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "Dinner"));
-        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "shachar"));
-        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "omriki"));
-        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "dddd"));
-        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "omrqweiki"));
+        share_recipe_PICK_persons = rootView.findViewById(R.id.share_recipe_PICK_persons);
+        share_recipe_PICK_time = rootView.findViewById(R.id.share_recipe_PICK_time);
 
-        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "lala"));
-        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "popo"));
+        share_recipe_BTN_uploadphotos = rootView.findViewById(R.id.share_recipe_BTN_uploadphotos);
+        share_recipe_BTN_share = rootView.findViewById(R.id.share_recipe_BTN_share);
+
+
+//        share_recipe_GRIDBTN_tags_buttons = rootView.findViewById(R.id.share_recipe_GRIDBTN_tags_buttons);
+//        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "Breakfast"));
+//        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "Brunch"));
+//        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "Lunch"));
+//        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "Dinner"));
+//        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "shachar"));
+//        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "omriki"));
+//        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "dddd"));
+//        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "omrqweiki"));
+//
+//        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "lala"));
+//        share_recipe_GRIDBTN_tags_buttons.addView(createCustomButton(requireContext(), "popo"));
 
         selectedTags = new ArrayList<>();
 
@@ -109,12 +118,12 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
 //            }
 //        });
 //
-//        btnUploadPhotos.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openFilePicker();
-//            }
-//        });
+        share_recipe_BTN_uploadphotos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFilePicker();
+            }
+        });
 //
 //        btnShareRecipe.setOnClickListener(new View.OnClickListener() {
 //            @Override
