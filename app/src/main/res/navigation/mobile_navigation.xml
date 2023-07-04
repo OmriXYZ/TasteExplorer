@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_share_recipe" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.omrimega.tasteexplorer.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_find_recipe"
+        android:name="com.omrimega.tasteexplorer.ui.slideshow.FindRecipeFragment"
+        android:label="@string/menu_find_a_recipe"
+        tools:layout="@layout/fragment_find_recipe" />
 </navigation>

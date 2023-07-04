@@ -4,26 +4,28 @@ import java.util.List;
 
 public class Recipe {
     private String title;
-    private List<String> tags;
-    private String difficulty;
-    private int numOfPersons;
+    private String tags;
+    private String instructions;
+    private String numOfPersons;
+    private String time;
     private String creator;
-    private int time;
-    private List<String> photos;
-    private String description;
+    private String image;
 
-    public Recipe(String title, List<String> tags, String difficulty, int numOfPersons, String creator, int time, List<String> photos, String description) {
+    public Recipe(String title, String tags, String instructions, String numOfPersons, String creator, String time, String image) {
         this.title = title;
         this.tags = tags;
-        this.difficulty = difficulty;
+        this.instructions = instructions;
         this.numOfPersons = numOfPersons;
         this.creator = creator;
         this.time = time;
-        this.photos = photos;
-        this.description = description;
+        this.image = image;
     }
 
+    public Recipe() {
+
+    }
     // Getters and setters for the attributes
+
 
     public String getTitle() {
         return title;
@@ -33,28 +35,36 @@ public class Recipe {
         this.title = title;
     }
 
-    public List<String> getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 
-    public String getDifficulty() {
-        return difficulty;
+    public String getInstructions() {
+        return instructions;
     }
 
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
-    public int getNumOfPersons() {
+    public String getNumOfPersons() {
         return numOfPersons;
     }
 
-    public void setNumOfPersons(int numOfPersons) {
+    public void setNumOfPersons(String numOfPersons) {
         this.numOfPersons = numOfPersons;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getCreator() {
@@ -65,27 +75,11 @@ public class Recipe {
         this.creator = creator;
     }
 
-    public int getTime() {
-        return time;
+    public String getImage() {
+        return image;
     }
 
-    public void setTime(int time) {
-        this.time = time;
-    }
-
-    public List<String> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(List<String> photos) {
-        this.photos = photos;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -15,8 +15,8 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/share_recipe" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_find_recipe"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:title="@string/menu_find_a_recipe" />
     </group>
 </menu>

@@ -23,7 +23,7 @@
             android:textColor="#F52323"
             android:textSize="36sp"
             android:textAlignment="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:textStyle="bold"/>
 
         <LinearLayout
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/share_recipe_EDIT_name"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:padding="8dp"
                 android:hint="Name of recipe"
                 android:textSize="20sp"
@@ -61,18 +61,86 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="45dp"
                 android:id="@+id/share_recipe_EDIT_tags"
                 android:layout_marginTop="15dp"
                 android:padding="6dp"
                 android:gravity="start"
                 android:textSize="15sp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
                 android:hint="Tags"
                 android:textColor="@color/black"
                 android:background="@color/white" />
 
-<!--            <androidx.core.widget.NestedScrollView-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    android:textColor="#F52323"
+                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Flavor"
+                    android:textColor="#F52323"
+                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type"
+                    android:textColor="#F52323"
+                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+                <com.omrimega.tasteexplorer.utilities.CustomSpinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/share_recipe_SPN_category"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    />
+                <com.omrimega.tasteexplorer.utilities.CustomSpinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/share_recipe_SPN_flavor"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    />
+                <com.omrimega.tasteexplorer.utilities.CustomSpinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/share_recipe_SPN_type"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    />
+            </LinearLayout>
+
+
+            <!--            <androidx.core.widget.NestedScrollView-->
 <!--                android:layout_width="wrap_content"-->
 <!--                android:layout_height="75dp">-->
 
@@ -141,19 +209,32 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
 
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Upload photos"
-                android:id="@+id/share_recipe_BTN_uploadphotos"
-                android:textSize="18sp"
-                android:layout_marginTop="15dp"
-                app:cornerRadius = "20dp"
-                android:backgroundTint="@color/basic_color"
+                <Button
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:text="Upload photos"
+                    android:id="@+id/share_recipe_BTN_uploadphotos"
+                    android:textSize="18sp"
+                    app:cornerRadius = "20dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/basic_color" />
 
-                />
+                <ImageButton
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/share_recipe_IMGBTN_imgbtn1"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/basic_color" />
+
+            </LinearLayout>
 
             <Button
                 android:layout_width="wrap_content"

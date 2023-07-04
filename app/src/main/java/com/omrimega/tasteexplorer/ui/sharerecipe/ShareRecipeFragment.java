@@ -1,24 +1,40 @@
 package com.omrimega.tasteexplorer.ui.sharerecipe;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.circularreveal.CircularRevealGridLayout;
+import com.google.firebase.storage.StorageReference;
 import com.omrimega.tasteexplorer.R;
 import com.omrimega.tasteexplorer.models.Recipe;
+import com.omrimega.tasteexplorer.utilities.CustomSpinner;
+import com.omrimega.tasteexplorer.utilities.DataManager;
+import com.omrimega.tasteexplorer.utilities.SignalGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +44,15 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
     private EditText share_recipe_EDIT_name, share_recipe_EDIT_instructions, share_recipe_EDIT_tags;
     private NumberPicker share_recipe_PICK_time, share_recipe_PICK_persons;
     private Button share_recipe_BTN_uploadphotos, share_recipe_BTN_share;
+    private ImageButton share_recipe_IMGBTN_imgbtn1;
+    private CustomSpinner share_recipe_SPN_category, share_recipe_SPN_type, share_recipe_SPN_flavor;
+
+
+    private static final int GalleryCode = 1;
+    private Uri imageUrl = null;
+    private ProgressDialog progressDialog;
+
+
 //    CircularRevealGridLayout share_recipe_GRIDBTN_tags_buttons;
 //    private Button btnBreakfast, btnBrunch, btnLunch, btnDinner;
 //    private Button btnPickTime, btnUploadPhotos, btnShareRecipe;
@@ -38,15 +63,23 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_share_recipe, container, false);
 
-        share_recipe_EDIT_name = rootView.findViewById(R.id.share_recipe_EDIT_name);
-        share_recipe_EDIT_instructions = rootView.findViewById(R.id.share_recipe_EDIT_instructions);
-        share_recipe_EDIT_tags = rootView.findViewById(R.id.share_recipe_EDIT_tags);
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        share_recipe_PICK_persons = rootView.findViewById(R.id.share_recipe_PICK_persons);
-        share_recipe_PICK_time = rootView.findViewById(R.id.share_recipe_PICK_time);
+        findViews(rootView);
 
-        share_recipe_BTN_uploadphotos = rootView.findViewById(R.id.share_recipe_BTN_uploadphotos);
-        share_recipe_BTN_share = rootView.findViewById(R.id.share_recipe_BTN_share);
+        initCategorySpinner();
+        initGeneralSpinner();
+        initFlavorSpinner();
+//        share_recipe_SPN_type.set
+
+
+        progressDialog = new ProgressDialog(getContext());
+
+        share_recipe_PICK_time.setMinValue(1);
+        share_recipe_PICK_time.setMaxValue(1000);
+
+        share_recipe_PICK_persons.setMinValue(1);
+        share_recipe_PICK_persons.setMaxValue(30);
 
 
 //        share_recipe_GRIDBTN_tags_buttons = rootView.findViewById(R.id.share_recipe_GRIDBTN_tags_buttons);
@@ -64,78 +97,146 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
 
         selectedTags = new ArrayList<>();
 
-//        etNumOfPersons = rootView.findViewById(R.id.et_num_of_persons);
-//
-//        btnBreakfast = rootView.findViewById(R.id.btn_breakfast);
-//        btnBrunch = rootView.findViewById(R.id.btn_brunch);
-//        btnLunch = rootView.findViewById(R.id.btn_lunch);
-//        btnDinner = rootView.findViewById(R.id.btn_dinner);
 
-//        btnPickTime = rootView.findViewById(R.id.btn_pick_time);
-//        btnUploadPhotos = rootView.findViewById(R.id.btn_upload_photos);
-//        btnShareRecipe = rootView.findViewById(R.id.btn_share_recipe);
-//
-//        spinnerDifficulty = rootView.findViewById(R.id.spinner_difficulty);
-//        ArrayAdapter<CharSequence> difficultyAdapter = ArrayAdapter.createFromResource(requireContext(),
-//                R.array.difficulty_levels, android.R.layout.simple_spinner_item);
-//        difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinnerDifficulty.setAdapter(difficultyAdapter);
-
-//        selectedTags = new ArrayList<>();
-//
-//        btnBreakfast.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                addTag("Breakfast");
-//            }
-//        });
-//
-//        btnBrunch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                addTag("Brunch");
-//            }
-//        });
-//
-//        btnLunch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                addTag("Lunch");
-//            }
-//        });
-//
-//        btnDinner.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                addTag("Dinner");
-//            }
-//        });
-//
-//        btnPickTime.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showTimePickerDialog();
-//            }
-//        });
-//
         share_recipe_BTN_uploadphotos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFilePicker();
+                uploadImage();
             }
         });
-//
-//        btnShareRecipe.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                shareRecipe();
-//            }
-//        });
+
+
+        share_recipe_BTN_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String title = share_recipe_EDIT_name.getText().toString().trim();
+                String instructions = share_recipe_EDIT_instructions.getText().toString().trim();
+                String tags = share_recipe_EDIT_tags.getText().toString().trim();
+                int time = share_recipe_PICK_time.getValue();
+                int persons = share_recipe_PICK_persons.getValue();
+
+                if (!title.isEmpty() && !instructions.isEmpty() && time != 0 && persons != 0 && imageUrl != null) {
+                    progressDialog.setTitle("Uploading...");
+                    progressDialog.show();
+                    DataManager.getInstance().uploadRecipe(imageUrl, title, instructions, tags, time, persons);
+                    progressDialog.dismiss();
+                    SignalGenerator.getInstance().showToast("Upload completed!", 400);
+                    cleanBoxes();
+                } else {
+                    SignalGenerator.getInstance().showToast("Upload not completed", 400);
+                    SignalGenerator.getInstance().vibrate(100);
+                }
+
+            }
+        });
+
 
         return rootView;
     }
 
-    private void addTag(String tag, MaterialButton button) {
+    private void initCategorySpinner() {
+        String[] category_items = new String[]{"Vegetarian", "Vegan", "Italian", "Gluetn free", "Asian", "Japanese", "American", "Spanish", "Mexican", "Healthy"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, category_items);
+        share_recipe_SPN_category.setAdapter(adapter);
+        share_recipe_SPN_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = (String) parent.getItemAtPosition(position);
+                addTag(selectedItem);
+                Log.d("selected", selectedItem);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void initFlavorSpinner() {
+        String[] flavor_items = new String[]{"Sweet", "Sour", "Salty", "Bitter", "Spicy"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, flavor_items);
+        share_recipe_SPN_flavor.setAdapter(adapter);
+        share_recipe_SPN_flavor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = (String) parent.getItemAtPosition(position);
+                addTag(selectedItem);
+                Log.d("selected", selectedItem);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void initGeneralSpinner() {
+        String[] general_items = new String[]{"Natural", "Organic", "Healthy food", "Fresh", "HOT food", "COLD food"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, general_items);
+        share_recipe_SPN_type.setAdapter(adapter);
+        share_recipe_SPN_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = (String) parent.getItemAtPosition(position);
+                addTag(selectedItem);
+                Log.d("selected", selectedItem);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void findViews(View rootView) {
+        share_recipe_EDIT_name = rootView.findViewById(R.id.share_recipe_EDIT_name);
+        share_recipe_EDIT_instructions = rootView.findViewById(R.id.share_recipe_EDIT_instructions);
+        share_recipe_EDIT_tags = rootView.findViewById(R.id.share_recipe_EDIT_tags);
+        share_recipe_EDIT_tags.setInputType(InputType.TYPE_NULL);
+
+        share_recipe_PICK_persons = rootView.findViewById(R.id.share_recipe_PICK_persons);
+        share_recipe_PICK_time = rootView.findViewById(R.id.share_recipe_PICK_time);
+
+        share_recipe_BTN_uploadphotos = rootView.findViewById(R.id.share_recipe_BTN_uploadphotos);
+        share_recipe_BTN_share = rootView.findViewById(R.id.share_recipe_BTN_share);
+
+        share_recipe_IMGBTN_imgbtn1 = rootView.findViewById(R.id.share_recipe_IMGBTN_imgbtn1);
+
+        share_recipe_SPN_category = rootView.findViewById(R.id.share_recipe_SPN_category);
+        share_recipe_SPN_flavor = rootView.findViewById(R.id.share_recipe_SPN_flavor);
+        share_recipe_SPN_type = rootView.findViewById(R.id.share_recipe_SPN_type);
+    }
+
+    private void cleanBoxes() {
+        share_recipe_EDIT_name.setText("");
+        share_recipe_EDIT_instructions.setText("");
+        share_recipe_EDIT_tags.setText("");
+        share_recipe_PICK_persons.setValue(1);
+        share_recipe_PICK_time.setValue(1);
+        share_recipe_IMGBTN_imgbtn1.setImageURI(null);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GalleryCode && resultCode == RESULT_OK) {
+            imageUrl = data.getData();
+            share_recipe_IMGBTN_imgbtn1.setImageURI(imageUrl);
+        }
+    }
+
+    private void uploadImage() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+//                startActivity(intent);
+        startActivityForResult(intent, GalleryCode);
+    }
+
+    private void addTag(String tag) {
         if (selectedTags.contains(tag)) {
             selectedTags.remove(tag);
             String tags = share_recipe_EDIT_tags.getText().toString();
@@ -147,7 +248,6 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
                 tags = tags.replace(tag, "");
             }
             share_recipe_EDIT_tags.setText(tags);
-            button.setBackgroundColor(getResources().getColor(R.color.basic_color));
         } else {
             selectedTags.add(tag);
             String tags = share_recipe_EDIT_tags.getText().toString();
@@ -156,9 +256,6 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
             }
             tags += tag;
             share_recipe_EDIT_tags.setText(tags);
-            button.setBackgroundColor(getResources().getColor(R.color.selected_btn));
-            button.setPaintFlags(button.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
         }
     }
 
@@ -223,7 +320,7 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
         button.setText(text);
         button.setCornerRadius(dpToPx(context, 20));
         button.setBackgroundTintList(context.getResources().getColorStateList(R.color.basic_color));
-        button.setOnClickListener(v -> addTag(text, button));
+//        button.setOnClickListener(v -> addTag(text, button));
         return button;
     }
 

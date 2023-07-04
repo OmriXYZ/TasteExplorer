@@ -19,5 +19,5 @@
 
     <string name="menu_home">Home</string>
     <string name="share_recipe">Share a recipe</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_find_a_recipe">Find a recipe</string>
 </resources>
