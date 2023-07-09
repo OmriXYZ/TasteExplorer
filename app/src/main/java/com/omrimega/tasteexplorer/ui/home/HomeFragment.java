@@ -23,7 +23,6 @@ import com.omrimega.tasteexplorer.R;
 import com.omrimega.tasteexplorer.RecipeAdapter;
 import com.omrimega.tasteexplorer.RecipeFullPage;
 import com.omrimega.tasteexplorer.RecyclerItemClickListener;
-import com.omrimega.tasteexplorer.RetrieveDataInRecyclerView;
 import com.omrimega.tasteexplorer.databinding.FragmentHomeBinding;
 import com.omrimega.tasteexplorer.models.Recipe;
 import com.omrimega.tasteexplorer.utilities.DataManager;

@@ -51,12 +51,6 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
     private static final int GalleryCode = 1;
     private Uri imageUrl = null;
     private ProgressDialog progressDialog;
-
-
-//    CircularRevealGridLayout share_recipe_GRIDBTN_tags_buttons;
-//    private Button btnBreakfast, btnBrunch, btnLunch, btnDinner;
-//    private Button btnPickTime, btnUploadPhotos, btnShareRecipe;
-//    private Spinner spinnerDifficulty;
     private List<String> selectedTags;
 
     @Override

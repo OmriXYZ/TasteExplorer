@@ -24,7 +24,6 @@ public class DataManager {
     public FirebaseDatabase mDatabase;
     public DatabaseReference myRef;
 
-    public DatabaseReference allRef;
     public static FirebaseStorage mStorage;
 
 
@@ -32,11 +31,8 @@ public class DataManager {
         this.context = context;
         mDatabase = FirebaseDatabase.getInstance();
         FirebaseUser mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(mFirebaseUser != null) {
-            Log.d("data", "test");
-            myRef = mDatabase.getReference().child("recipes");
-            mStorage = FirebaseStorage.getInstance();
-        }
+        myRef = mDatabase.getReference().child("recipes");
+        mStorage = FirebaseStorage.getInstance();
     }
 
     public static void init(Context context) {

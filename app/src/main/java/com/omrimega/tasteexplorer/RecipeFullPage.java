@@ -23,7 +23,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.omrimega.tasteexplorer.R;
 import com.omrimega.tasteexplorer.RecipeAdapter;
-import com.omrimega.tasteexplorer.RetrieveDataInRecyclerView;
 import com.omrimega.tasteexplorer.databinding.FragmentHomeBinding;
 import com.omrimega.tasteexplorer.models.Recipe;
 import com.omrimega.tasteexplorer.utilities.DataManager;
