@@ -1,5 +1,6 @@
 package com.omrimega.tasteexplorer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.omrimega.tasteexplorer.auth.LoginActivity;
 import com.omrimega.tasteexplorer.databinding.ActivityMain2Binding;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -24,7 +26,7 @@ public class MainActivity2 extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMain2Binding binding;
     private FirebaseAuth firebaseAuth;
-    private TextView nav_TXT_email;
+    private TextView nav_TXT_email, nav_TXT_logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,19 @@ public class MainActivity2 extends AppCompatActivity {
             String email = currentUser.getEmail();
             nav_TXT_email.setText(email);
         }
+
+        nav_TXT_logout = headerView.findViewById(R.id.nav_TXT_logout);
+        nav_TXT_logout.setOnClickListener(v -> {
+            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(MainActivity2.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+
+        });
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(

@@ -25,7 +25,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:background="#F52323"
-
         app:itemBackground="@drawable/drawer_item_color"
         app:itemHorizontalPadding="40dp"
         app:itemTextColor="@color/white"
