@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import androidx.core.widget.ImageViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.omrimega.tasteexplorer.models.Recipe;
+import com.omrimega.tasteexplorer.utilities.DataManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -44,6 +46,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         holder.recipeview_TXT_time.setText("minutes: " + recipe.getTime());
         holder.recipeview_TXT_persons.setText("persons: " + recipe.getNumOfPersons());
         holder.recipeview_TXT_by.setText("by: " + recipe.getCreator());
+
 
         String imageUri = null;
         imageUri = recipe.getImage();

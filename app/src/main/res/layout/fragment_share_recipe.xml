@@ -59,18 +59,34 @@
                 android:background="@color/white"
                 android:drawablePadding="8dp"/>
 
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:id="@+id/share_recipe_EDIT_tags"
+                android:layout_height="60dp"
                 android:layout_marginTop="15dp"
-                android:padding="6dp"
-                android:gravity="start"
-                android:textSize="15sp"
                 android:layout_marginBottom="5dp"
-                android:hint="Tags"
-                android:textColor="@color/black"
-                android:background="@color/white" />
+
+                >
+
+                <EditText
+                    android:id="@+id/share_recipe_EDIT_tags"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:hint="Tags"
+                    android:padding="6dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/share_recipe_IMG_deleteTags"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="top|left"
+                    android:layout_marginLeft="5dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/trash_btn" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -108,6 +124,7 @@
                     android:layout_weight="1"
                     android:textStyle="bold"/>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -138,25 +155,6 @@
                     android:textAlignment="center"
                     />
             </LinearLayout>
-
-
-            <!--            <androidx.core.widget.NestedScrollView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="75dp">-->
-
-<!--                <com.google.android.material.circularreveal.CircularRevealGridLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:columnCount="4"-->
-<!--                    android:id="@+id/share_recipe_GRIDBTN_tags_buttons"-->
-<!--                    >-->
-
-
-
-
-<!--                </com.google.android.material.circularreveal.CircularRevealGridLayout>-->
-
-<!--            </androidx.core.widget.NestedScrollView>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -211,11 +209,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                >
-
-
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
                 <Button
                     android:layout_width="200dp"
                     android:layout_height="50dp"
@@ -228,25 +223,45 @@
                     android:backgroundTint="@color/basic_color" />
 
                 <ImageButton
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:id="@+id/share_recipe_IMGBTN_imgbtn1"
                     android:scaleType="fitCenter"
                     android:backgroundTint="@color/basic_color" />
 
             </LinearLayout>
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Share!"
-                android:id="@+id/share_recipe_BTN_share"
-                android:textSize="18sp"
-                android:layout_gravity="center"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:layout_marginTop="15dp"
-                app:cornerRadius = "20dp"
-                android:backgroundTint="@color/basic_color"
-                />
+                >
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Share!"
+                    android:id="@+id/share_recipe_BTN_share"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    app:cornerRadius = "20dp"
+                    android:backgroundTint="@color/basic_color"
+                    android:layout_weight="1"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Clear form"
+                    android:id="@+id/share_recipe_BTN_resetForm"
+                    android:textSize="18sp"
+                    app:cornerRadius = "20dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:backgroundTint="@color/basic_color" />
+            </LinearLayout>
+
+
 
         </LinearLayout>
     </LinearLayout>

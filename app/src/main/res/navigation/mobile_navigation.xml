@@ -22,4 +22,10 @@
         android:name="com.omrimega.tasteexplorer.ui.slideshow.FindRecipeFragment"
         android:label="@string/menu_find_a_recipe"
         tools:layout="@layout/fragment_find_recipe" />
+
+    <fragment
+        android:id="@+id/nav_myRecipes"
+        android:name="com.omrimega.tasteexplorer.ui.MyRecipesFragment"
+        android:label="My recipes"
+        tools:layout="@layout/fragment_my_recipes" />
 </navigation>

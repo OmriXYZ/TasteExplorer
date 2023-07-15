@@ -28,7 +28,6 @@
         app:itemBackground="@drawable/drawer_item_color"
         app:itemHorizontalPadding="40dp"
         app:itemTextColor="@color/white"
-
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"
 

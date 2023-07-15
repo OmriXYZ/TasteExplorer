@@ -79,16 +79,29 @@
                     android:textColor="#33303030" />
             </LinearLayout>
 
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:layout_marginBottom="4dp"
+
+            >
             <TextView
                 android:id="@+id/recipeview_TXT_by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:layout_marginTop="4dp"
-                android:layout_marginLeft="17dp"
                 android:text="by"
+                android:layout_weight="1"
                 android:textSize="13sp"
                 android:textColor="#33303030" />
+
+        </LinearLayout>
 
         </LinearLayout>
 

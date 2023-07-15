@@ -96,17 +96,36 @@
 
 
 
-    <TextView
-        android:id="@+id/recipefull_TXT_by"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="17dp"
         android:layout_gravity="left|bottom"
         android:layout_marginBottom="4dp"
+        android:layout_marginRight="17dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="17dp"
-        android:text="by"
-        android:textSize="15sp"
-        android:textColor="#33303030" />
-
+        >
+        <TextView
+            android:id="@+id/recipefull_TXT_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="by"
+            android:layout_weight="1"
+            android:textSize="13sp"
+            android:textColor="#33303030" />
+        <Button
+            android:id="@+id/recipefull_BTN_delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="X"
+            android:textAlignment="center"
+            android:padding="0dp"
+            android:backgroundTint="#E30000"
+            android:visibility="invisible"
+            android:textSize="15sp"/>
+    </LinearLayout>
 
 </RelativeLayout>

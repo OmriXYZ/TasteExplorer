@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="25dp"
         android:layout_gravity="top|left"
-        app:srcCompat="@android:drawable/arrow_up_float"
+        android:backgroundTint="#DDDDDD"
+        app:srcCompat="@drawable/list"
         />
 
 
