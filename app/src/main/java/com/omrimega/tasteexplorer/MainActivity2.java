@@ -37,13 +37,8 @@ public class MainActivity2 extends AppCompatActivity {
         binding = ActivityMain2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
@@ -68,8 +63,6 @@ public class MainActivity2 extends AppCompatActivity {
 
         });
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_share_recipe, R.id.nav_find_recipe)
                 .setOpenableLayout(drawer)
@@ -78,12 +71,9 @@ public class MainActivity2 extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         getSupportActionBar().hide();
-//        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(v -> {
-            drawer.open();
-        });
+        fab.setOnClickListener(v -> drawer.open());
     }
 
     @Override

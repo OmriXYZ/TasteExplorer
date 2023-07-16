@@ -1,7 +1,5 @@
 package com.omrimega.tasteexplorer.models;
 
-import java.util.List;
-
 public class Recipe {
     private String title;
     private String tags;

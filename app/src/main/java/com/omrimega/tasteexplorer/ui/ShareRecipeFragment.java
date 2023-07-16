@@ -1,15 +1,11 @@
-package com.omrimega.tasteexplorer.ui.sharerecipe;
+package com.omrimega.tasteexplorer.ui;
 
 import static android.app.Activity.RESULT_OK;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Debug;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,18 +19,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.circularreveal.CircularRevealGridLayout;
-import com.google.firebase.storage.StorageReference;
 import com.omrimega.tasteexplorer.R;
-import com.omrimega.tasteexplorer.models.Recipe;
+import com.omrimega.tasteexplorer.RecipeUploadCallback;
 import com.omrimega.tasteexplorer.utilities.CustomSpinner;
 import com.omrimega.tasteexplorer.utilities.DataManager;
 import com.omrimega.tasteexplorer.utilities.SignalGenerator;
@@ -42,7 +32,7 @@ import com.omrimega.tasteexplorer.utilities.SignalGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShareRecipeFragment extends Fragment implements View.OnClickListener {
+public class ShareRecipeFragment extends Fragment implements View.OnClickListener, RecipeUploadCallback {
 
     private EditText share_recipe_EDIT_name, share_recipe_EDIT_instructions, share_recipe_EDIT_tags;
     private NumberPicker share_recipe_PICK_time, share_recipe_PICK_persons;
@@ -52,7 +42,6 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
     private ImageView share_recipe_IMG_deleteTags;
     private static final int GalleryCode = 1;
     private Uri imageUrl = null;
-    private ProgressDialog progressDialog;
     private List<String> selectedTags;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,8 +53,6 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
         initCategorySpinner();
         initGeneralSpinner();
         initFlavorSpinner();
-
-        progressDialog = new ProgressDialog(getContext());
 
         share_recipe_PICK_time.setMinValue(1);
         share_recipe_PICK_time.setMaxValue(1000);
@@ -81,15 +68,12 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
             int persons = share_recipe_PICK_persons.getValue();
 
             if (!title.isEmpty() && !instructions.isEmpty() && time != 0 && persons != 0 && imageUrl != null) {
-                progressDialog.setTitle("Uploading...");
-                progressDialog.show();
-                DataManager.getInstance().uploadRecipe(imageUrl, title, instructions, tags, time, persons);
-                progressDialog.dismiss();
-                SignalGenerator.getInstance().showToast("Upload completed!", 400);
+                ProgressDialog dialog = ProgressDialog.show(getContext(), "", "Uploading...", true);
+                dialog.show();
+                DataManager.getInstance().uploadRecipe(imageUrl, title, instructions, tags, time, persons, dialog, this);
                 cleanBoxes();
             } else {
-                SignalGenerator.getInstance().showToast("Upload not completed", 400);
-                SignalGenerator.getInstance().vibrate(100);
+                SignalGenerator.getInstance().showToast("Check your inputs!", 1500);
             }
 
         });
@@ -99,11 +83,20 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
             selectedTags.clear();
         });
 
-        share_recipe_BTN_resetForm.setOnClickListener(v -> {
-            cleanBoxes();
-        });
+        share_recipe_BTN_resetForm.setOnClickListener(v -> cleanBoxes());
 
         return rootView;
+    }
+
+    @Override
+    public void onRecipeUploadSuccess(ProgressDialog dialog) {
+        SignalGenerator.getInstance().showToast("Sharing is caring!", 800);
+    }
+
+    @Override
+    public void onRecipeUploadFailure(Exception exception) {
+        SignalGenerator.getInstance().showToast("Upload not completed", 800);
+        SignalGenerator.getInstance().vibrate(100);
     }
 
     private void initCategorySpinner() {
@@ -171,7 +164,6 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
         share_recipe_EDIT_name = rootView.findViewById(R.id.share_recipe_EDIT_name);
         share_recipe_EDIT_instructions = rootView.findViewById(R.id.share_recipe_EDIT_instructions);
         share_recipe_EDIT_tags = rootView.findViewById(R.id.share_recipe_EDIT_tags);
-        share_recipe_EDIT_tags.setInputType(InputType.TYPE_NULL);
 
         share_recipe_PICK_persons = rootView.findViewById(R.id.share_recipe_PICK_persons);
         share_recipe_PICK_time = rootView.findViewById(R.id.share_recipe_PICK_time);
@@ -244,5 +236,4 @@ public class ShareRecipeFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
 
     }
-
 }

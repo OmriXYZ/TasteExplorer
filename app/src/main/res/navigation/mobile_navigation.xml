@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.omrimega.tasteexplorer.ui.home.HomeFragment"
+        android:name="com.omrimega.tasteexplorer.ui.AllRecipesFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_allrecipes" />
 
     <fragment
         android:id="@+id/nav_share_recipe"
-        android:name="com.omrimega.tasteexplorer.ui.sharerecipe.ShareRecipeFragment"
+        android:name="com.omrimega.tasteexplorer.ui.ShareRecipeFragment"
         android:label="@string/share_recipe"
         tools:layout="@layout/fragment_share_recipe" />
 
     <fragment
         android:id="@+id/nav_find_recipe"
-        android:name="com.omrimega.tasteexplorer.ui.slideshow.FindRecipeFragment"
+        android:name="com.omrimega.tasteexplorer.ui.FindRecipeFragment"
         android:label="@string/menu_find_a_recipe"
         tools:layout="@layout/fragment_find_recipe" />
 

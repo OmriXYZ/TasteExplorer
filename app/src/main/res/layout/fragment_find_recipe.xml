@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.slideshow.FindRecipeFragment"
-    android:background="@drawable/foodbg2"
+    tools:context=".ui.FindRecipeFragment"
+    android:background="#D1D1D1"
     >
 
     <LinearLayout

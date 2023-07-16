@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.sharerecipe.ShareRecipeFragment"
-    android:background="@drawable/foodbg2"
+    tools:context=".ui.ShareRecipeFragment"
+    android:background="#D1D1D1"
     >
 
     <LinearLayout

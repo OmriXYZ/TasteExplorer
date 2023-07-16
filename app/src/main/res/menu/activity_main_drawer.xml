@@ -6,21 +6,21 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home"
+            android:icon="@drawable/allrecipes_icon"
+            android:title="All recipes"
             android:checked="true"
             />
         <item
             android:id="@+id/nav_share_recipe"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/sharerecipes_icon"
             android:title="@string/share_recipe" />
         <item
             android:id="@+id/nav_find_recipe"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/findrecipes_icon"
             android:title="@string/menu_find_a_recipe" />
         <item
             android:id="@+id/nav_myRecipes"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/myrecipes_icon"
             android:title="My recipes" />
     </group>
 </menu>

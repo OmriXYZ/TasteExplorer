@@ -1,4 +1,4 @@
-package com.omrimega.tasteexplorer.ui.slideshow;
+package com.omrimega.tasteexplorer.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 
 import com.omrimega.tasteexplorer.R;
 import com.omrimega.tasteexplorer.RecipeFiltered;
-import com.omrimega.tasteexplorer.RecipeFullPage;
 import com.omrimega.tasteexplorer.utilities.CustomSpinner;
 
 import java.util.ArrayList;
@@ -29,9 +28,7 @@ public class FindRecipeFragment extends Fragment {
     private EditText find_recipe_EDIT_tags;
     private Button find_recipe_BTN_find;
     private List<String> selectedTags;
-
-
-
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_find_recipe, container, false);
@@ -64,12 +61,14 @@ public class FindRecipeFragment extends Fragment {
     }
 
     private void initCategorySpinner() {
-        String[] category_items = new String[]{"Vegetarian", "Vegan", "Italian", "Gluetn free", "Asian", "Japanese", "American", "Spanish", "Mexican", "Healthy"};
+        String[] category_items = new String[]{"None", "Vegetarian", "Vegan", "Italian", "Gluten free", "Asian", "Japanese", "American", "Spanish", "Mexican", "Healthy"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, category_items);
         find_recipe_SPN_category.setAdapter(adapter);
         find_recipe_SPN_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0)
+                    return;
                 String selectedItem = (String) parent.getItemAtPosition(position);
                 addTag(selectedItem);
                 Log.d("selected", selectedItem);
@@ -81,14 +80,15 @@ public class FindRecipeFragment extends Fragment {
             }
         });
     }
-
     private void initFlavorSpinner() {
-        String[] flavor_items = new String[]{"Sweet", "Sour", "Salty", "Bitter", "Spicy"};
+        String[] flavor_items = new String[]{"None", "Sweet", "Sour", "Salty", "Bitter", "Spicy"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, flavor_items);
         find_recipe_SPN_flavor.setAdapter(adapter);
         find_recipe_SPN_flavor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0)
+                    return;
                 String selectedItem = (String) parent.getItemAtPosition(position);
                 addTag(selectedItem);
                 Log.d("selected", selectedItem);
@@ -100,14 +100,15 @@ public class FindRecipeFragment extends Fragment {
             }
         });
     }
-
     private void initGeneralSpinner() {
-        String[] general_items = new String[]{"Natural", "Organic", "Healthy food", "Fresh", "HOT food", "COLD food"};
+        String[] general_items = new String[]{"None", "Natural", "Organic", "Healthy food", "Fresh", "HOT food", "COLD food"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, general_items);
         find_recipe_SPN_type.setAdapter(adapter);
         find_recipe_SPN_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0)
+                    return;
                 String selectedItem = (String) parent.getItemAtPosition(position);
                 addTag(selectedItem);
                 Log.d("selected", selectedItem);

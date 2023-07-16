@@ -2,7 +2,6 @@ package com.omrimega.tasteexplorer.utilities;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.Spinner;
 
 
 /** Spinner extension that calls onItemSelected even when the selection is the same as its previous value */

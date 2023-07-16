@@ -1,4 +1,4 @@
-package com.omrimega.tasteexplorer.ui.home;
+package com.omrimega.tasteexplorer.ui;
 
 import static com.omrimega.tasteexplorer.utilities.DataManager.findRecipes;
 
@@ -8,33 +8,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.omrimega.tasteexplorer.R;
 import com.omrimega.tasteexplorer.RecipeAdapter;
 import com.omrimega.tasteexplorer.RecipeFullPage;
 import com.omrimega.tasteexplorer.RecyclerItemClickListener;
-import com.omrimega.tasteexplorer.databinding.FragmentHomeBinding;
+import com.omrimega.tasteexplorer.databinding.FragmentAllrecipesBinding;
 import com.omrimega.tasteexplorer.models.Recipe;
-import com.omrimega.tasteexplorer.utilities.DataManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class AllRecipesFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentAllrecipesBinding binding;
     private RecyclerView recyclerView;
     private RecipeAdapter recipeAdapter;
     private List<Recipe> recipeList;
@@ -42,10 +34,8 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentAllrecipesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         recyclerView = root.findViewById(R.id.recipeview_VIEW_recyclerView);
@@ -53,7 +43,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
         idKeys = new ArrayList<>();
-        recipeList = new ArrayList<Recipe>();
+        recipeList = new ArrayList<>();
 
         recipeAdapter = new RecipeAdapter(root.getContext(), recipeList);
         recyclerView.setAdapter(recipeAdapter);

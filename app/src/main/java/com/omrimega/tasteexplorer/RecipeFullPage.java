@@ -1,52 +1,23 @@
 package com.omrimega.tasteexplorer;
 
-import static com.omrimega.tasteexplorer.utilities.DataManager.deleteRecipeByIdKey;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Patterns;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.omrimega.tasteexplorer.R;
-import com.omrimega.tasteexplorer.RecipeAdapter;
-import com.omrimega.tasteexplorer.auth.LoginActivity;
-import com.omrimega.tasteexplorer.databinding.FragmentHomeBinding;
-import com.omrimega.tasteexplorer.models.Recipe;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.omrimega.tasteexplorer.utilities.DataManager;
+import com.omrimega.tasteexplorer.utilities.SignalGenerator;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class RecipeFullPage extends AppCompatActivity {
-    private FragmentHomeBinding binding;
     private TextView recipefull_TXT_tags, recipefull_TXT_title, recipefull_TXT_instructions, recipefull_TXT_time, recipefull_TXT_persons, recipefull_TXT_by;
     private ImageView recipefull_IMG_image;
     private Button recipefull_BTN_delete;
@@ -95,9 +66,17 @@ public class RecipeFullPage extends AppCompatActivity {
         AlertDialog dialog = builder.create();
 
         dialogView.findViewById(R.id.dialog_BTN_delete).setOnClickListener(view -> {
-            deleteRecipeByIdKey(idKey);
-            dialog.dismiss();
-            finish();
+            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference().child("recipes").child(idKey);
+            myRef.removeValue()
+                    .addOnSuccessListener(aVoid -> {
+                        SignalGenerator.getInstance().showToast("The recipe has been successfully deleted", 1000);
+                        dialog.dismiss();
+                        finish();
+                    })
+                    .addOnFailureListener(e -> {
+                        // Failed to delete data
+                    });
+
         });
 
         dialogView.findViewById(R.id.dialog_BTN_cancel).setOnClickListener(view -> dialog.dismiss());

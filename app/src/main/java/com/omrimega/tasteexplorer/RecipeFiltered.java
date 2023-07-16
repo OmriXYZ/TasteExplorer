@@ -2,7 +2,6 @@ package com.omrimega.tasteexplorer;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -14,10 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.omrimega.tasteexplorer.databinding.RecipesFilteredBinding;
 import com.omrimega.tasteexplorer.models.Recipe;
 import com.omrimega.tasteexplorer.utilities.DataManager;
@@ -43,7 +38,7 @@ public class RecipeFiltered extends AppCompatActivity {
         recipefiltered_VIEW_recyclerView = findViewById(R.id.recipefiltered_VIEW_recyclerView);
         recipefiltered_VIEW_recyclerView.setHasFixedSize(true);
         recipefiltered_VIEW_recyclerView.setLayoutManager(new LinearLayoutManager(binding.getRoot().getContext()));
-        recipeList = new ArrayList<Recipe>();
+        recipeList = new ArrayList<>();
         recipeAdapter = new RecipeAdapter(binding.getRoot().getContext(), recipeList);
         recipefiltered_VIEW_recyclerView.setAdapter(recipeAdapter);
 
