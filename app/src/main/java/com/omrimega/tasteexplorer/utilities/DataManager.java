@@ -47,6 +47,7 @@ public class DataManager {
     }
 
     public static FirebaseUser getUser() {
+        mFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         return mFirebaseUser;
     }
 
